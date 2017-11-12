@@ -2,7 +2,6 @@ var decodeBitsAdvanced = function(bits){
     if (bits === "" || !/1/.test(bits)) {
       return "";
     }
-    console.log(bits);
     bits = bits.replace(/^0+/, "");
     bits = bits.replace(/0+$/, "");
 
@@ -14,17 +13,12 @@ var decodeBitsAdvanced = function(bits){
     var nZeroes = zeroes.split("-").map(function(z) {
       return z.length;
     });
-    //console.log(nOnes);
     if (nZeroes[0] === 0) {
       nZeroes.shift();
     }
     if (nZeroes.length > 1 && nZeroes[nZeroes.length - 1] === 0) {
         nZeroes.pop();
     }
-
-    //console.log(nOnes);
-    //console.log(nZeroes);
-
     var onesAvg = nOnes.reduce(function(a,b) {return a+b}) / nOnes.length;
     var zeroesAvg = nZeroes.reduce(function(a,b) {return a+b}) / nZeroes.length;
 
@@ -43,7 +37,15 @@ var decodeBitsAdvanced = function(bits){
 
     nOnes.forEach(function(n,i) {
       if (a0 > 0 && n > a0) {
-        str += "-"
+        if (max/a0 > 4.5) {
+          if (n <= a1 + 1) {
+            str += "."
+          } else {
+            str += "-"
+          }
+        } else {
+          str += "-";
+        }
       } else {
         if(n <= a1) {
           str+= ".";
@@ -63,27 +65,24 @@ var decodeBitsAdvanced = function(bits){
         } else if (min !== max && nZeroes[i] <= a0) {
           str += "";
         } else if (min !== max && nZeroes[i] > a0 && nZeroes[i] <= a02) {
-          str += " "
+          if (max/a0 > 4.5 && nZeroes[i] <= a0 + 1) {
+            str += "";
+          } else {
+            str += " "
+          }
         } else if (min !== max && nZeroes[i] > a02) {
           str += "   "
         }
       }
     });
-
-
   return str;
-
-    //return bits.replace('111', '-').replace('000', ' ').replace('1', '.').replace('0', '');
 }
 
 var decodeMorse = function(morseCode){
-  console.log(morseCode.length)
-  console.log(morseCode)
   if (morseCode === "") {
     return "";
   }
   if (morseCode.indexOf(" ") === -1 && morseCode.indexOf("   ") === -1) {
-    console.log("HERE!");
     return MORSE_CODE[morseCode];
   }
   var words = morseCode.split("   ");
@@ -95,5 +94,4 @@ var decodeMorse = function(morseCode){
       return MORSE_CODE[c];
     }).join("");
    }).join(" ").trim();
-    //return chars.map(w => w.map(function(c) { return MORSE_CODE[c]}).join("")).join(" ").trim();
 }
