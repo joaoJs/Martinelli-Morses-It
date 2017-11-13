@@ -13,43 +13,31 @@
 
   <script src="morseCodeDecoder.js"></script>
   <script src="MORSE_CODE.js"></script>
+  <script src="controls.js"></script>
 
 
 
   <script type="text/javascript">
-      //console.log("Start");
-    //console.log(decodeBits('1100110011001100000011000000111111001100111111001111110000000000000011001111110011111100111111000000110011001111110000001111110011001100000011'));
     let isPressed = false;
     let count = 0;
     let bits = "";
+    let count0 = 0;
 
+    // code that will be running every 200 ms
+    var gameLoop = setInterval(() => {
+      initializeKeyboard();
+      console.log(bits);
 
-    if (!isPressed) {
-      bits += "0";
-    }
-    $(document).keydown(function(e) {
-      if (e.keyCode === 32) {
-        isPressed = true;
-        console.log("isPressed");
-      } if (e.keyCode === 38) {
-        console.log(bits);
+      // bits string will be generated as user presses or release the key
+      if (!isPressed) {
+        bits += "0";
       }
-    });
-
-    while (isPressed) {
-      count++;
-      bits += "1";
-    }
-    console.log(count);
-    console.log("BITS");
-    console.log(bits);
-
-    $(document).keyup(function(e) {
-      if (e.keyCode === 32) {
-        isPressed = false;
-
+      if (isPressed) {
+        bits += "1";
       }
-    });
+
+
+  }, 200);
 
 
   </script>
