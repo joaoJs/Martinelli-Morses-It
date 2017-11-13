@@ -23,39 +23,75 @@
   <script type="text/javascript">
     initializeKeyboard();
     let isPressed = false;
-    let count = 0;
+    let count1 = 0;
     let bits = "";
     let count0 = 0;
     hasStarted = false;
-
+    let arrCount1 = [];
+    let arrCount0 = [];
 
     function startBits() {
+          console.log("start");
           // code that will be running every 200 ms
             var gameLoop = setInterval(() => {
-              console.log(bits);
               if (!hasStarted) {
                 finishBits(gameLoop);
               }
 
               // bits string will be generated as user presses or release the key
               if (!isPressed) {
-                bits += "0";
+                if (count1 > 0) {
+                  arrCount1.push(count1);
+                  count1 = 0;
+                }
+                count0++;
               }
               if (isPressed) {
-                bits += "1";
+                if (count0 > 0) {
+                  arrCount0.push(count0);
+                  count0 = 0;
+                }
+                count1++;
               }
 
 
-          }, 250);
+          }, 50);
     }
 
 
 
     function finishBits(loop) {
       clearInterval(loop);
+      console.log("ARRCOUNT1")
+      console.log(arrCount1);
+      console.log("ARRCOUNT0")
+      console.log(arrCount0);
+      arrCount1.forEach((c,i) => {
+        if (c <= 4) {
+          bits += "1";
+        } else if (c > 4) {
+          bits += "111";
+        }
+        if (arrCount0[i+1]) {
+          if (arrCount0[i+1] < 6) {
+            bits += "0";
+          } else if (arrCount0[i+1] >= 6 && arrCount0[i+1] < 12) {
+            bits += "000";
+          } else {
+            bits += "0000000";
+          }
+        }
+      });
       var result = decodeMorse(decodeBitsAdvanced(bits));
       console.log("RESULT --> ");
       console.log(result);
+      console.log("COUNT");
+      console.log(count0);
+      console.log(count1);
+      count1 = 0;
+      count0 = 0;
+      arrCount0 = [];
+      arrCount1 = [];
       bits = "";
     }
 
