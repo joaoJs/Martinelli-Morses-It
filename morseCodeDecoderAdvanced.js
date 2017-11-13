@@ -4,6 +4,8 @@ var decodeBitsAdvanced = function(bits){
     }
     bits = bits.replace(/^0+/, "");
     bits = bits.replace(/0+$/, "");
+    console.log("BITS");
+    console.log(bits);
 
     var ones = bits.replace(/0+/g, "-");
     var zeroes = bits.replace(/1+/g, "-");
