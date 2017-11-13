@@ -19,8 +19,8 @@ var decodeBitsAdvanced = function(bits){
     if (nZeroes.length > 1 && nZeroes[nZeroes.length - 1] === 0) {
         nZeroes.pop();
     }
-    var onesAvg = nOnes.reduce(function(a,b) {return a+b}) / nOnes.length;
-    var zeroesAvg = nZeroes.reduce(function(a,b) {return a+b}) / nZeroes.length;
+    var onesAvg = nOnes.reduce(function(a,b) {return a+b;}) / nOnes.length;
+    var zeroesAvg = nZeroes.reduce(function(a,b) {return a+b;}) / nZeroes.length;
 
     var a1 = Math.round(onesAvg);
     var a0 = Math.round(zeroesAvg);
@@ -28,7 +28,7 @@ var decodeBitsAdvanced = function(bits){
     var max = Math.max.apply(Math, nZeroes);
     console.log(max);
     var min = Math.min.apply(Math, nZeroes);
-    console.log(min)
+    console.log(min);
     console.log(" ------- ");
 
     var a02 = (max + a0) / 2;
@@ -39,9 +39,9 @@ var decodeBitsAdvanced = function(bits){
       if (a0 > 0 && n > a0) {
         if (max/a0 > 4.5) {
           if (n <= a1 + 1) {
-            str += "."
+            str += ".";
           } else {
-            str += "-"
+            str += "-";
           }
         } else {
           str += "-";
@@ -68,15 +68,15 @@ var decodeBitsAdvanced = function(bits){
           if (max/a0 > 4.5 && nZeroes[i] <= a0 + 1) {
             str += "";
           } else {
-            str += " "
+            str += " ";
           }
         } else if (min !== max && nZeroes[i] > a02) {
-          str += "   "
+          str += "   ";
         }
       }
     });
   return str;
-}
+};
 
 var decodeMorse = function(morseCode){
   if (morseCode === "") {
@@ -87,11 +87,11 @@ var decodeMorse = function(morseCode){
   }
   var words = morseCode.split("   ");
   var chars = words.map(function(w) {
-    return w.split(" ")});
+    return w.split(" ");});
 
   return chars.map(function(w) {
     return w.map(function(c) {
       return MORSE_CODE[c];
     }).join("");
    }).join(" ").trim();
-}
+};
