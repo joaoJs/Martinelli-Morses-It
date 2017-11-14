@@ -38,9 +38,10 @@
   <script src="MORSE_CODE.js"></script>
   <script src="Morse.js"></script>
   <script src="controls.js"></script>
-  <script src="MorseCodeDecoderAdvanced.js">
+  <script src="MorseCodeDecoderAdvanced.js"></script>
 
-  </script>
+
+  <!-- </script> -->
 
 
 
@@ -49,6 +50,8 @@
   $(document).ready(() => {
     initializeKeyboard();
   });
+
+    const beep = new Audio('./public/beep.wav');
 
     let isPressed = false;
     let count1 = 0;
@@ -78,6 +81,7 @@
 
               // bits string will be generated as user presses or release the key
               if (!isPressed) {
+                beep.pause();
                 if (count1 > 0) {
                   arrCount1.push(count1);
                   count1 = 0;
@@ -85,6 +89,7 @@
                 count0++;
               }
               if (isPressed) {
+                beep.play();
                 if (count0 > 0) {
                   arrCount0.push(count0);
                   count0 = 0;
@@ -118,15 +123,7 @@
           } else {
             bits += "0000000";
           }
-          // if (arrCount0[i+1] < 8) {
-          //   bits += "0";
-          // }
-          // // else if (arrCount0[i+1] >= 6 && arrCount0[i+1] < 12) {
-          // //   bits += "000";
-          // // }
-          // else {
-          //   bits += "0000000";
-          // }
+
         }
       });
       var result = decodeMorse(decodeBitsAdvanced(bits));
@@ -139,14 +136,15 @@
         } else {
           if (MORSE[result]) {
             mRes = MORSE[result];
+            $('.result').html("Wrong. You typed: " + result + "   /    " + mRes);
+          } else {
+            $('.result').html("Wrong. You typed: " + result);
           }
-          $('.result').html("Wrong. You typed: " + result + "   /    " + mRes);
+
           console.log("Wrong.");
         }
       }
-      // console.log("COUNT");
-      // console.log(count0);
-      // console.log(count1);
+
       letter = "?";
       count1 = 0;
       count0 = 0;

@@ -9,7 +9,7 @@
 .letterDiv {
   width: 50%;
   height: 100%;
-  border: 1px solid white;
+  border: 1px solid rgba(255,255,255,.6);
   color: white;
   font-size: 72px;
   /*padding: 10px;*/
@@ -21,6 +21,7 @@
   background: url('.././public/ana1.png') no-repeat;
   background-size: cover;
   border: 1px solid white;
+  box-shadow: 0 0 10px white;
 }
 
 .letter,
@@ -28,9 +29,9 @@
 .result  {
   width: 100%;
 
-  border: 1px solid white;
+  border: 1px solid rgba(255,255,255,.2);
   padding: 10px;
-  color: white;
+  color: rgba(255,255,255,.9);
 }
 
 .letter,
@@ -46,5 +47,6 @@
   padding: 20px;
   background-color: rgba(150, 80,10,1);
   height: 250px;
-  color: white;
+  font-size: 30px;
+  color: rgba(255,255,255,.9);
 }
