@@ -18,6 +18,6 @@
 .instructions {
   width: 50%;
   height: 100%;
-  background: url('yellow.png');
+  background: url('.././public/yellow.png');
   border: 1px solid white;
 }
