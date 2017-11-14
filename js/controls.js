@@ -1,6 +1,7 @@
 function initializeKeyboard() {
       console.log("Keyboard initialized");
       $(document).keydown(function(e) {
+        e.preventDefault();
         if (e.keyCode === 32) {
           e.preventDefault();
           isPressed = true;
