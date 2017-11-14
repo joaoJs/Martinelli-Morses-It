@@ -31,6 +31,7 @@
       <li> Repeat it </li>
     </ol>
   </div>
+  <!-- <span id="audio"></span> -->
 
 
 
@@ -177,8 +178,10 @@
     }
 
     function wtsWrong() {
-        whatsWrong.currentTime = 0;
+        fCount = 0;
+        // whatsWrong.currentTime = 0;
         whatsWrong.play();
+        //$('#audio').html('<audio autoplay><source src="./public/whats.mp3"></audio>');
         $('.right').css('height','750px');
         $('.right').css('background',"url('./public/ana2.png') no-repeat");
         $('.right').css('background-size',"cover");
