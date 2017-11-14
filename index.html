@@ -34,11 +34,11 @@
 
 
 
-  <script src="morseCodeDecoder.js"></script>
-  <script src="MORSE_CODE.js"></script>
-  <script src="Morse.js"></script>
-  <script src="controls.js"></script>
-  <script src="MorseCodeDecoderAdvanced.js"></script>
+  <script src="./js/morseCodeDecoder.js"></script>
+  <script src="./js/MORSE_CODE.js"></script>
+  <script src="./js/Morse.js"></script>
+  <script src="./js/controls.js"></script>
+  <script src="./js/MorseCodeDecoderAdvanced.js"></script>
 
 
   <!-- </script> -->
@@ -48,11 +48,18 @@
   <script type="text/javascript">
   console.log("HERE")
   $(document).ready(() => {
+    //test();
     initializeKeyboard();
+
   });
 
-    const beep = new Audio('./public/beep.wav');
 
+    // sounds
+    const beep = new Audio('./public/beep.wav');
+    const success = new Audio('./public/success.wav');
+    const wrong = new Audio('./public/wrong.wav');
+
+    // initial variables
     let isPressed = false;
     let count1 = 0;
     let bits = "";
@@ -131,13 +138,16 @@
       console.log(result);
       if (letter !== "?") {
         if (result === letter) {
+          success.play();
           $('.result').html("Congratulations!");
           console.log("Congratulations!");
         } else {
           if (MORSE[result]) {
             mRes = MORSE[result];
+            wrong.play();
             $('.result').html("Wrong. You typed: " + result + "   /    " + mRes);
           } else {
+            wrong.play();
             $('.result').html("Wrong. You typed: " + result);
           }
 

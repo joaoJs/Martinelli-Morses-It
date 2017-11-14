@@ -1,3 +1,5 @@
+
+
 const MORSE_CODE = {
   '.-': 'a',
   '-...': 'b',
@@ -37,3 +39,7 @@ const MORSE_CODE = {
   '-----': '10',
   '': ' '
 };
+
+function test() {
+  console.log(MORSE_CODE);
+}
