@@ -1,8 +1,8 @@
 function initializeKeyboard() {
       console.log("Keyboard initialized");
       $(document).keydown(function(e) {
-        //e.preventDefault();
         if (e.keyCode === 32) {
+          e.preventDefault();
           isPressed = true;
         } else if (e.keyCode === 13) {
           if (hasStarted) {
@@ -12,6 +12,8 @@ function initializeKeyboard() {
             startBits();
           }
         } else if (e.keyCode === 38) {
+          const val = $('.result').val();
+          $('.result').html("");
           whichLetter();
         }
       });
