@@ -58,12 +58,15 @@
     const beep = new Audio('./public/beep.wav');
     const success = new Audio('./public/success.wav');
     const wrong = new Audio('./public/wrong.wav');
+    const whatsWrong = new Audio('./public/whatswrong.mp3');
 
     // initial variables
     let isPressed = false;
+    let sCount = 0;
+    let count0 = 0;
     let count1 = 0;
     let bits = "";
-    let count0 = 0;
+    let fCount = 0;
     hasStarted = false;
     let arrCount1 = [];
     let arrCount0 = [];
@@ -112,10 +115,6 @@
 
     function finishBits(loop) {
       clearInterval(loop);
-      // console.log("ARRCOUNT1")
-      // console.log(arrCount1);
-      // console.log("ARRCOUNT0")
-      // console.log(arrCount0);
       arrCount1.forEach((c,i) => {
         if (c <= 5) {
           bits += "1";
@@ -139,15 +138,29 @@
       if (letter !== "?") {
         if (result === letter) {
           success.play();
+          sCount++;
           $('.result').html("Congratulations!");
           console.log("Congratulations!");
         } else {
           if (MORSE[result]) {
             mRes = MORSE[result];
-            wrong.play();
+            //wrong.play();
+              if (fCount > 2) {
+                wtsWrong();
+              } else {
+                wrong.play();
+                fCount++;
+              }
+            //fCount++;
             $('.result').html("Wrong. You typed: " + result + "   /    " + mRes);
           } else {
-            wrong.play();
+            if (fCount > 2) {
+              wtsWrong();
+            } else {
+              wrong.play();
+              fCount++;
+            }
+
             $('.result').html("Wrong. You typed: " + result);
           }
 
@@ -161,6 +174,13 @@
       arrCount0 = [];
       arrCount1 = [];
       bits = "";
+    }
+
+    function wtsWrong() {
+        whatsWrong.play();
+        $('.right').css('height','750px');
+        $('.right').css('background',"url('./public/ana2.png') no-repeat");
+        $('.right').css('background-size',"cover");
     }
 
 
