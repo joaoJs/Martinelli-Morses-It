@@ -5,9 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="./styles/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+
+
+  <div class="main">
+    <div class="letterDiv"></div>
+    <div class="instructions"></div>
+  </div>
 
 
 
@@ -21,7 +31,11 @@
 
 
   <script type="text/javascript">
+  console.log("HERE")
+  $(document).ready(() => {
     initializeKeyboard();
+  });
+
     let isPressed = false;
     let count1 = 0;
     let bits = "";
@@ -34,6 +48,7 @@
     function whichLetter() {
       const rand = Math.floor(Math.random()*26) + 97;
       letter = String.fromCodePoint(rand);
+      $('.letterDiv').html(letter.toUpperCase());
       console.log("The letter is: " + letter);
     }
 
@@ -69,10 +84,10 @@
 
     function finishBits(loop) {
       clearInterval(loop);
-      console.log("ARRCOUNT1")
-      console.log(arrCount1);
-      console.log("ARRCOUNT0")
-      console.log(arrCount0);
+      // console.log("ARRCOUNT1")
+      // console.log(arrCount1);
+      // console.log("ARRCOUNT0")
+      // console.log(arrCount0);
       arrCount1.forEach((c,i) => {
         if (c <= 5) {
           bits += "1";
@@ -87,15 +102,28 @@
           } else {
             bits += "0000000";
           }
+          // if (arrCount0[i+1] < 8) {
+          //   bits += "0";
+          // }
+          // // else if (arrCount0[i+1] >= 6 && arrCount0[i+1] < 12) {
+          // //   bits += "000";
+          // // }
+          // else {
+          //   bits += "0000000";
+          // }
         }
       });
       var result = decodeMorse(decodeBitsAdvanced(bits));
       console.log("RESULT --> ");
       console.log(result);
-      if (result === letter) {
-        console.log("Congratulations!");
-      } else {
-        console.log("Wrong.");
+      if (letter !== "?") {
+        if (result === letter) {
+          $('.letterDiv').html("Congratulations!");
+          console.log("Congratulations!");
+        } else {
+          $('.letterDiv').html("Wrong. You typed: " + result);
+          console.log("Wrong.");
+        }
       }
       // console.log("COUNT");
       // console.log(count0);
