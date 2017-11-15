@@ -32,6 +32,8 @@
       <li> Repeat it </li>
     </ol>
   </div>
+
+  <div class="bottom"></div>
   <!-- <span id="audio"></span> -->
 
 
@@ -204,12 +206,15 @@
          var color2 = generateRandomColor();
          console.log(color);
         $('.right').css('box-shadow', '0px 0px 1000px' + color);
+        $('.letterDiv').css('box-shadow', '600px 200px 2000px' + color2);
         $('.instructions').css('box-shadow', '0px 0px 500px' + color2);
         $('.letter').css('box-shadow', '0px 0px 500px' + color);
         $('.result').css('box-shadow', '0px 0px 500px' + color2);
         $('.letter').css('box-shadow', '0px 0px 500px' + color);
         $('.later').css('box-shadow', '0px 0px 500px' + color2);
         $('.morse').css('box-shadow', '0px 0px 500px' + color);
+        $('.bottom').css('box-shadow', '0px 0px 500px' + color);
+        $('.bottom').css('background',color);
       }, 800);
     }
 
