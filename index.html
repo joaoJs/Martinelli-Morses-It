@@ -201,9 +201,10 @@
         wts.currentTime = 0;
         wts.play();
         //$('#audio').html('<audio autoplay><source src="./public/whats.mp3"></audio>');
-        $('.right').css('height','850px');
-        $('.right').css('width','40%');
-        $('.margin-right').css('width','10%');
+        $('.right').css('height','650px');
+        $('.right').css('width','30%');
+        $('.letterDiv').css('width','45%');
+        $('.margin-right').css('width','25%');
         $('.right').css('background',"url('./public/ana2.png') no-repeat");
         $('.right').css('background-size',"cover");
         $('.main').css('background',"black");
@@ -217,7 +218,25 @@
     }
 
     function congrats() {
+      score = 0;
+      congratulations.currentTime = 0;
       congratulations.play();
+
+      $('.right').css('height','650px');
+      $('.letterDiv').css('width','40%');
+      $('.right').css('width','40%');
+      $('.margin-right').css('width','20%');
+      $('.right').css('background',"url('./public/ana3.png') no-repeat");
+      $('.right').css('background-size',"cover");
+      $('.main').css('background',"rgba(230,230,100,.6)");
+      $('.body').css('background',"rgba(230,230,100,.6)");
+      $('.later').css('background',"rgba(230,230,100,.6)");
+      $('.instructions').css("rgba(230,230,100,.6)");
+      $('.main').css('color',"rgba(255,255,255,0)");
+      $('.instructions').css('color',"rgba(255,255,255,0)");
+
+      randomBox();
+
     }
 
     function randomBox() {
