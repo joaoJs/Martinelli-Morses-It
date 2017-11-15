@@ -17,7 +17,7 @@
   <div class="main">
     <div class="letterDiv">
       <div class="later"></div>
-      <div class="letter"></div>
+      <div class="letter"><span class="l"></span><span class="start"></span><span class="score">0</span></div>
       <div class="morse"></div>
       <div class="result"></div>
     </div>
@@ -69,7 +69,6 @@
 
     // initial variables
     let isPressed = false;
-    let sCount = 0;
     let count0 = 0;
     let count1 = 0;
     let bits = "";
@@ -78,23 +77,30 @@
     let arrCount1 = [];
     let arrCount0 = [];
     let letter = "?";
+    let score = 0;
+    let canFinish = false;
+    let canStart = false;
+    let gameLoop;
 
     function whichLetter() {
       const rand = Math.floor(Math.random()*26) + 97;
       letter = String.fromCodePoint(rand);
-      $('.letter').html(letter.toUpperCase());
+      //$('.score').html(score);
+      $('.l').html(letter.toUpperCase());
+      $('.score').html(score);
       $('.morse').html(MORSE[letter]);
       console.log("The letter is: " + letter + "  --->  " + MORSE[letter]);
     }
 
     function startBits() {
-          $('.letter').append("     Start!");
+          //canStart = false;
+          $('.start').html("Start!");
           console.log("start");
           // code that will be running every 200 ms
-            var gameLoop = setInterval(() => {
-              if (!hasStarted) {
-                finishBits(gameLoop);
-              }
+            gameLoop = setInterval(() => {
+              // if (!hasStarted) {
+              //   finishBits(gameLoop);
+              // }
 
               // bits string will be generated as user presses or release the key
               if (!isPressed) {
@@ -122,6 +128,7 @@
 
     function finishBits(loop) {
       clearInterval(loop);
+      canStart = false;
       arrCount1.forEach((c,i) => {
         if (c <= 5) {
           bits += "1";
@@ -145,7 +152,8 @@
       if (letter !== "?") {
         if (result === letter) {
           success.play();
-          sCount++;
+          score++;
+          $('.score').html(score);
           $('.result').html("Congratulations!");
           console.log("Congratulations!");
         } else {

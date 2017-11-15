@@ -68,3 +68,12 @@ body {
   background-color: rgba(150, 80,10,1);
   /*z-index: 1000;*/
 }
+
+.score {
+  float: right;
+}
+
+.start {
+  position: relative;
+  left: 20px;
+}
