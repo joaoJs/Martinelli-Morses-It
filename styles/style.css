@@ -1,16 +1,21 @@
+body {
+  height: 100%;
+}
+
 .main {
   width: 100%;
   height: 500px;
   background: rgba(35,80,15,1);
   display: flex;
   justify-content: flex-end;
+  color: rgba(255,255,255,.9);
 }
 
 .letterDiv {
   width: 50%;
   height: 100%;
-  border: 1px solid rgba(255,255,255,.6);
-  color: white;
+  /*border: 1px solid rgba(255,255,255,.6);*/
+  /*color: white;*/
   font-size: 72px;
   /*padding: 10px;*/
 }
@@ -20,7 +25,7 @@
   height: 100%;
   background: url('.././public/ana1.png') no-repeat;
   background-size: cover;
-  border: 1px solid white;
+  /*border: 1px solid white;*/
   box-shadow: 0 0 10px white;
 }
 
@@ -29,9 +34,9 @@
 .result  {
   width: 100%;
 
-  border: 1px solid rgba(255,255,255,.2);
+  /*border: 1px solid rgba(255,255,255,.2);*/
   padding: 10px;
-  color: rgba(255,255,255,.9);
+  /*color: rgba(255,255,255,.9);*/
 }
 
 .letter,
@@ -46,7 +51,7 @@
 .instructions {
   padding: 20px;
   background-color: rgba(150, 80,10,1);
-  height: 250px;
+  height: 350px;
   font-size: 30px;
   color: rgba(255,255,255,.9);
 }

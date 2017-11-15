@@ -16,6 +16,7 @@
 
   <div class="main">
     <div class="letterDiv">
+      <div class="later"></div>
       <div class="letter"></div>
       <div class="morse"></div>
       <div class="result"></div>
@@ -59,7 +60,7 @@
     const beep = new Audio('./public/beep.wav');
     const success = new Audio('./public/success.wav');
     const wrong = new Audio('./public/wrong.wav');
-    const whatsWrong = new Audio('./public/whats.mp3');
+    const whatsWrong = new Audio('./public/197233__rt759__alice.wav');
 
     // initial variables
     let isPressed = false;
@@ -179,12 +180,41 @@
 
     function wtsWrong() {
         fCount = 0;
-        // whatsWrong.currentTime = 0;
+        whatsWrong.currentTime = 0;
         whatsWrong.play();
         //$('#audio').html('<audio autoplay><source src="./public/whats.mp3"></audio>');
-        $('.right').css('height','750px');
+        $('.right').css('height','850px');
         $('.right').css('background',"url('./public/ana2.png') no-repeat");
         $('.right').css('background-size',"cover");
+        $('.main').css('background',"black");
+        $('.body').css('background',"black");
+        $('.later').css('background',"black");
+        $('.instructions').css('background',"black");
+        $('.main').css('color',"rgba(255,255,255,0)");
+        $('.instructions').css('color',"rgba(255,255,255,0)");
+
+        randomBox();
+    }
+
+    function randomBox() {
+      console.log("here");
+      var blink = setInterval(function() {
+        console.log("here inside");
+         var color = generateRandomColor();
+         var color2 = generateRandomColor();
+         console.log(color);
+        $('.right').css('box-shadow', '0px 0px 1000px' + color);
+        $('.instructions').css('box-shadow', '0px 0px 500px' + color2);
+        $('.letter').css('box-shadow', '0px 0px 500px' + color);
+        $('.result').css('box-shadow', '0px 0px 500px' + color2);
+        $('.letter').css('box-shadow', '0px 0px 500px' + color);
+        $('.later').css('box-shadow', '0px 0px 500px' + color2);
+        $('.morse').css('box-shadow', '0px 0px 500px' + color);
+      }, 800);
+    }
+
+    function generateRandomColor() {
+      return '#'+Math.floor(Math.random()*16777215).toString(16);
     }
 
 
