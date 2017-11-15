@@ -65,6 +65,7 @@
     const wrong = new Audio('./public/wrong.wav');
     //const orch = new Audio('./public/orch.mp3');
     const wts = new Audio('./public/197233__rt759__alice.wav');
+    const congratulations = new Audio('./public/395244__hoshi-hana__happy.wav');
 
 
     // initial variables
@@ -147,15 +148,19 @@
         }
       });
       var result = decodeMorse(decodeBitsAdvanced(bits));
-      console.log("RESULT --> ");
-      console.log(result);
+      // console.log("RESULT --> ");
+      // console.log(result);
       if (letter !== "?") {
         if (result === letter) {
-          success.play();
           score++;
-          $('.score').html(score);
-          $('.result').html("Congratulations!");
-          console.log("Congratulations!");
+          if (score === 5) {
+            congrats();
+          } else {
+            success.play();
+            $('.score').html(score);
+            $('.result').html("Congratulations!");
+            console.log("Congratulations!");
+          }
         } else {
           if (MORSE[result]) {
             mRes = MORSE[result];
@@ -209,6 +214,10 @@
         $('.instructions').css('color',"rgba(255,255,255,0)");
 
         randomBox();
+    }
+
+    function congrats() {
+      congratulations.play();
     }
 
     function randomBox() {
